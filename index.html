@@ -259,11 +259,10 @@
     }
     .about-layout{display:flex;flex-direction:column;gap:18px;padding:26px 18px 20px;max-width:560px;margin:0 auto}
     .about-hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
-    .about-logo{width:92px;height:92px;margin-bottom:8px;filter:drop-shadow(0 10px 24px rgba(0,0,0,.5));cursor:pointer;border-radius:28px;transition:box-shadow .55s ease,filter .35s ease,transform .15s ease}
+    .about-logo{width:92px;height:92px;margin-bottom:8px;cursor:pointer;border-radius:28px;overflow:hidden;isolation:isolate;background:#111;box-shadow:0 10px 24px rgba(0,0,0,.45);transition:box-shadow .35s ease,transform .15s ease}
     .about-logo:active{transform:scale(.95)}
-    .about-logo.egg-active{animation:eggGlow 1.8s ease-in-out infinite}
-    @keyframes eggGlow{0%,100%{filter:brightness(1) drop-shadow(0 10px 24px rgba(0,0,0,.5))}50%{filter:brightness(1.2)}}
-    .about-logo img{display:block;width:100%;height:100%;pointer-events:none}
+    .about-logo.egg-active{/* glow chỉ dùng box-shadow từ JS, không filter để tránh hở nền/lệch icon */}
+    .about-logo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;border-radius:inherit;pointer-events:none;transform:translateZ(0)}
     .about-brand-name{font-size:26px;font-weight:700;letter-spacing:-.03em;overflow-wrap:anywhere}
     .about-version{display:inline-block;font-size:12px;color:rgba(255,255,255,.62);padding:3px 11px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1)}
     .about-actions{display:flex;flex-direction:row;justify-content:center;align-items:stretch;flex-wrap:wrap;gap:12px;width:100%}
@@ -2060,7 +2059,7 @@ function showNotice(id,text){
   document.getElementById('app').appendChild(m);
   requestAnimationFrame(()=>m.classList.add('show'));
 }
-function showPermModal(){ showNotice('perm-modal','Vui lòng cấp quyền truy cập đầu vào cho trang này.'); }
+function showPermModal(){ showNotice('perm-modal','Hãy cấp quyền truy cập camera và micro cho trang web này (biểu tượng khóa/camera trên thanh địa chỉ trình duyệt), rồi tải lại trang.'); }
 /* Chỉ báo "cấp quyền" khi đúng là bị từ chối quyền; lỗi khác báo đúng loại lỗi để biết hướng xử lý */
 function showCameraError(e){
   const name = e && e.name || 'Error';
@@ -2147,7 +2146,7 @@ const FILTER_PRESETS = {
   natural:{name:'Tự nhiên', thumb:'background:linear-gradient(135deg,#d7a98c,#6fae91);filter:saturate(.95)', fx:{contrast:1.04, saturate:1.06, brightness:1.012}},
   sharp:{name:'Sắc nét', thumb:'background:linear-gradient(135deg,#f8e1ff,#dfe6e9)', fx:{contrast:1.13, saturate:1.04, brightness:1.01}},
   mono:{name:'Đen trắng', thumb:'background:linear-gradient(135deg,#eeeeee,#4a4a4a);filter:grayscale(1)', fx:{grayscale:1, contrast:1.14, brightness:1.015}},
-  igsunset:{name:'Cam tím', thumb:'background:linear-gradient(45deg,#5b34b8,#9a2a78 50%,#e0642a)', fx:{}, overlay:{stops:['#5b35a3','#a02a6a','#e0642a'], angle:45, blend:'normal', alpha:0.6}},
+  igsunset:{name:'Cam tím', thumb:'background:linear-gradient(45deg,#833AB4 0%,#C13584 40%,#E1306C 65%,#F77737 100%)', fx:{contrast:1.1, saturate:1.14, brightness:1.03}, overlay:{stops:['#833AB4','#C13584','#E1306C','#F77737'], angle:45, blend:'soft-light', alpha:0.62}},
   golden:{name:'Giờ vàng', thumb:'background:linear-gradient(135deg,#ffd27a,#ff8a3d)', fx:{sepia:0.16, saturate:1.28, brightness:1.06, contrast:1.04}, overlay:{stops:['#ffc466','#ff7a3c','#ffa05a'], angle:160, blend:'soft-light', alpha:0.6}},
   film:{name:'Phim cũ', thumb:'background:linear-gradient(135deg,#d9c3a0,#7a6a58);filter:sepia(.3)', fx:{sepia:0.2, contrast:1.1, saturate:0.88, brightness:1.01}, overlay:{stops:['#f2dfc6'], angle:0, blend:'soft-light', alpha:0.4}},
   y2k:{name:'Y2K', thumb:'background:linear-gradient(135deg,#00e5ff,#ff5ac8)', fx:{contrast:1.14, saturate:1.28, brightness:1.08}, overlay:{stops:['#00e5ff','#ff5ac8'], angle:135, blend:'soft-light', alpha:0.5}},
@@ -4473,8 +4472,8 @@ document.getElementById('about-logo-img').src = document.querySelector('link[rel
     e.stopPropagation();
     const h = hues[i++ % hues.length];
     logo.classList.add('egg-active');
-    logo.style.boxShadow = '0 0 28px 10px hsl('+h+' 100% 60% / 0.75), 0 0 56px 18px hsl('+h+' 100% 55% / 0.35)';
-    logo.style.filter = 'drop-shadow(0 0 12px hsl('+h+' 100% 60% / 0.9))';
+    // Chỉ box-shadow (không filter) để icon không bị lệch / hở nền
+    logo.style.boxShadow = '0 0 0 2px hsl('+h+' 100% 62% / 0.95), 0 0 22px 8px hsl('+h+' 100% 58% / 0.7), 0 0 48px 16px hsl('+h+' 100% 55% / 0.35)';
   });
   // Thoát cài đặt → tắt sáng
   const obs = new MutationObserver(()=>{
@@ -4482,7 +4481,6 @@ document.getElementById('about-logo-img').src = document.querySelector('link[rel
     if(ov && !ov.classList.contains('show')){
       logo.classList.remove('egg-active');
       logo.style.boxShadow = '';
-      logo.style.filter = '';
     }
   });
   const ov = document.getElementById('settings-overlay');
@@ -4685,10 +4683,21 @@ bootCameraSetup();   // mở camera sớm: phần script còn lại chạy trong
 /** Đếm số khung hình thật trong ms mili giây (qua requestVideoFrameCallback); 0 nếu không đo được. */
 async function runCameraSetupSequence(){
   const setStatus=(t,pct)=>{ try{ window.AppLoading && window.AppLoading.set(pct, t); }catch(e){} };
-  setStatus('Đang mở camera...', 25);
+  setStatus('Đang yêu cầu quyền camera và micro...', 18);
   try{
-    // Mở camera một lần, xin quyền camera + micro cùng lúc. startCamera hiện hình ngay khi có khung đầu tiên,
-    // việc áp chất lượng chạy song song. FPS thực tế do bộ đếm FPS trực tiếp đo sau khi giao diện chính đã hiện.
+    // Nếu trình duyệt báo đã từ chối sẵn → hiện hướng dẫn ngay, vẫn gọi getUserMedia để mở lại hộp quyền (nếu được)
+    try{
+      if(navigator.permissions?.query){
+        const [camP, micP] = await Promise.all([
+          navigator.permissions.query({name:'camera'}).catch(()=>null),
+          navigator.permissions.query({name:'microphone'}).catch(()=>null)
+        ]);
+        if((camP && camP.state==='denied') || (micP && micP.state==='denied')){
+          setStatus('Hãy cấp quyền camera và micro trên trình duyệt...', 22);
+        }
+      }
+    }catch(e){}
+    // Mở camera một lần, xin quyền camera + micro cùng lúc. startCamera hiện hình ngay khi có khung đầu tiên.
     if(!await startCamera(true, true)) throw new Error('Không mở được camera');
     setStatus('Đang hiển thị...', 85);
     // Micro chỉ cần để xin quyền sớm; micro thật sẽ mở lại khi vào chế độ quay video.
@@ -4713,12 +4722,21 @@ async function bootCameraSetup(){
     showCameraError({ name:'NotSupportedError' });
     return;
   }
+  // Chỉ HTTPS / localhost mới xin được quyền đầu vào
+  const secure = window.isSecureContext === true || location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+  if(!secure){
+    try{ window.AppLoading && window.AppLoading.finish(); }catch(e){}
+    noCamera.classList.remove('hidden');
+    showCameraError({ name:'NotSupportedError' });
+    return;
+  }
   try{
     await runCameraSetupSequence();
   }catch(e){
     try{ window.AppLoading && window.AppLoading.finish(); }catch(_){}
     noCamera.classList.remove('hidden');
-    showCameraError(e);
+    // Đợi loading bắt đầu ẩn rồi mới hiện popup quyền (tránh bị che)
+    setTimeout(()=>showCameraError(e), 120);
   }
 }
 requestAnimationFrame(positionFpsLabel);

@@ -258,26 +258,21 @@
       padding:16px 0 6px;letter-spacing:.02em;
     }
     .about-layout{display:flex;flex-direction:column;gap:18px;padding:26px 18px 20px;max-width:560px;margin:0 auto}
+    /* Giới thiệu: 3 nút nằm ngay dưới ô Phiên bản (cuối .about-hero), không đẩy xuống đáy panel */
     .about-hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
-    .about-logo{width:92px;height:92px;margin-bottom:8px;cursor:pointer;border-radius:28px;overflow:hidden;isolation:isolate;background:#111;box-shadow:0 10px 24px rgba(0,0,0,.45);transition:box-shadow .35s ease,transform .15s ease}
-    .about-logo:active{transform:scale(.95)}
-    .about-logo.egg-active{/* glow chỉ dùng box-shadow từ JS, không filter để tránh hở nền/lệch icon */}
-    .about-logo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;border-radius:inherit;pointer-events:none;transform:translateZ(0)}
+    .about-logo{width:92px;height:92px;margin-bottom:8px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;filter:drop-shadow(0 10px 24px rgba(0,0,0,.5)) drop-shadow(0 0 0 transparent);transition:filter .6s ease,transform .15s ease}
+    .about-logo:active{transform:scale(.96)}
+    .about-actions{display:flex;justify-content:center;gap:14px;margin-top:0}
+    .about-sq{width:64px;height:64px;border-radius:18px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:#fff;cursor:pointer;text-decoration:none;transition:background .16s,border-color .16s,transform .12s}
+    .about-sq:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.24)}
+    .about-sq:active{transform:scale(.94)}
+    .about-sq svg{width:26px;height:26px}
+    .about-sq.primary{background:linear-gradient(135deg,rgba(255,170,0,.28),rgba(255,120,0,.14));border-color:rgba(255,170,0,.5);color:#ffb62e}
+    .about-sq.primary:hover{background:linear-gradient(135deg,rgba(255,170,0,.4),rgba(255,120,0,.22));border-color:rgba(255,190,50,.75)}
+    .about-logo img{display:block;width:100%;height:100%}
     .about-brand-name{font-size:26px;font-weight:700;letter-spacing:-.03em;overflow-wrap:anywhere}
     .about-version{display:inline-block;font-size:12px;color:rgba(255,255,255,.62);padding:3px 11px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1)}
-    .about-actions{display:flex;flex-direction:row;justify-content:center;align-items:stretch;flex-wrap:wrap;gap:12px;width:100%}
-    .about-action{flex:0 1 110px;width:110px;height:110px;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:12px 8px;border-radius:22px;text-align:center;display:flex;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.055);color:#fff;text-decoration:none;font:inherit;cursor:pointer;transition:background .16s,border-color .16s,transform .12s}
-    .about-action:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2)}
-    .about-action:active{transform:scale(.985)}
-    .about-action .ico{width:44px;height:44px;flex:0 0 44px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.09)}
-    .about-action .ico svg{width:22px;height:22px}
-    .about-action .txt{display:flex;flex-direction:column;align-items:center;text-align:center;gap:3px;flex:0 0 auto}
-    .about-action .txt b{font-size:12px;line-height:1.2;font-weight:600}
-    .about-action .txt small,.about-action .chev{display:none}
-    .about-action.primary{background:linear-gradient(135deg,rgba(255,170,0,.24),rgba(255,120,0,.12));border-color:rgba(255,170,0,.45)}
-    .about-action.primary:hover{background:linear-gradient(135deg,rgba(255,170,0,.34),rgba(255,120,0,.18));border-color:rgba(255,190,50,.7)}
-    .about-action.primary .ico{background:#ffaa00;color:#1a1200}
-    @media(max-width:520px){.about-layout{padding:18px 12px 16px;gap:14px}.about-logo{width:76px;height:76px}.about-brand-name{font-size:22px}.about-action{width:96px;height:96px;flex-basis:96px;padding:10px 6px}.about-action .ico{width:40px;height:40px;flex-basis:40px}}
+    @media(max-width:520px){.about-layout{padding:18px 12px 16px;gap:14px}.about-logo{width:76px;height:76px}.about-brand-name{font-size:22px}.about-sq{width:58px;height:58px;border-radius:16px}}
     .switch{position:relative;display:inline-block;width:44px;height:26px;flex-shrink:0}
     .switch input{opacity:0;width:0;height:0}
     .switch-slider{
@@ -306,7 +301,7 @@
     .storage-clean{margin-top:14px;padding:9px 20px;border:0;border-radius:10px;background:#ffaa00;color:#000;font-size:13.5px;font-weight:600;cursor:pointer;font-family:inherit;transition:filter .15s,transform .1s}
     .storage-clean:hover{filter:brightness(1.08)}
     .storage-clean:active{transform:scale(.97)}
-    .storage-sep{height:1px;background:rgba(255,255,255,.1);margin:20px 0 18px}
+    .settings-sep{height:1px;background:rgba(255,255,255,.1);margin:18px 0}
     .storage-sub{font-size:19px;font-weight:700;letter-spacing:-.01em;margin:0 0 12px}
     .storage-files{display:flex;flex-direction:column;gap:10px}
     .storage-empty{font-size:13px;color:rgba(255,255,255,.5);padding:6px 2px}
@@ -422,6 +417,7 @@
     }
     .filter-item.selected .thumb, .filter-item:hover .thumb{border-color:#fff;transform:scale(1.03)}
     .filter-item .fname{max-width:68px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;color:rgba(255,255,255,.75);font-weight:500}
+    .filter-hot-label{font-size:11px;font-weight:600;letter-spacing:.02em;color:#ffb62e;padding:2px 2px 0}
 
     #timer-menu{
       display:flex;position:fixed;z-index:60;flex-direction:column;gap:12px;
@@ -528,27 +524,6 @@
     .app-loading-label{position:absolute;left:16px;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 26px);font-size:10px;line-height:1.3;font-weight:400;letter-spacing:.2px;color:rgba(255,255,255,.34);text-align:center;user-select:none;pointer-events:none}
     #instant-tooltip{position:fixed;z-index:2000;pointer-events:none;padding:5px 8px;border-radius:7px;background:rgba(25,25,28,.96);border:1px solid rgba(255,255,255,.13);color:#fff;font-size:11px;line-height:1.25;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.3)}
 
-    /* Tooltip nhanh — nhỏ hơn, trượt trái/phải */
-    .app-tip{display:none !important}
-    .app-tip-old{
-      position:fixed;z-index:320;pointer-events:none;
-      padding:5px 9px;border-radius:8px;font-size:11px;font-weight:500;
-      background:rgba(30,30,32,.88);color:#fff;
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:0 4px 14px rgba(0,0,0,.35);
-      opacity:0;white-space:nowrap;max-width:200px;
-      transition:opacity .15s ease, transform .15s ease;
-    }
-    .app-tip.from-left{ transform:translate(0,-50%) translateX(-6px); }
-    .app-tip.from-left.show{ opacity:1; transform:translate(0,-50%) translateX(0); }
-    .app-tip.from-right{ transform:translate(-100%,-50%) translateX(6px); }
-    .app-tip.from-right.show{ opacity:1; transform:translate(-100%,-50%) translateX(0); }
-    .app-tip.from-bottom{ transform:translate(-50%,0) translateY(6px); }
-    .app-tip.from-bottom.show{ opacity:1; transform:translate(-50%,0) translateY(0); }
-    .app-tip.from-top{ transform:translate(-50%,0) translateY(-8px); }
-    .app-tip.from-top.show{ opacity:1; transform:translate(-50%,0) translateY(0); }
-    .app-tip.from-up{ transform:translate(-50%,-100%) translateY(4px); }
-    .app-tip.from-up.show{ opacity:1; transform:translate(-50%,-100%) translateY(-8px); }
 
     
     /* QR: ẩn bộ lọc, hẹn giờ, EV, bão hòa, nhiệt độ */
@@ -648,12 +623,6 @@
     @keyframes libDropIn{from{opacity:0}to{opacity:1}}
     #qr-hist-modal .lib-modal-box{max-width:400px;max-height:70vh;display:flex;flex-direction:column}
     #qr-hist-list{overflow:auto;max-height:40vh;margin:8px 0;text-align:left}
-    .qr-hist-item{
-      padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08);
-      font-size:13px;
-    }
-    .qr-hist-item .t{color:rgba(255,255,255,.45);font-size:11px;margin-bottom:4px}
-    .qr-hist-item .c{word-break:break-all;color:rgba(255,255,255,.9)}
     .qr-hist-empty{text-align:center;color:rgba(255,255,255,.45);padding:20px;font-size:13px}
 
     /* Library overlay */
@@ -665,7 +634,7 @@
       transition:opacity .2s ease,transform .26s cubic-bezier(.2,.8,.2,1),visibility .2s;
     }
     #library-overlay.show{opacity:1;visibility:visible;transform:none;pointer-events:auto}
-    body.library-open #app > :not(#library-overlay):not(#library-detail):not(.lib-modal):not(#toast):not(.notice-modal){pointer-events:none !important}
+    body.library-open #app > :not(#library-overlay):not(#library-detail):not(.lib-modal):not(#toast):not(.notice-modal):not(#qr-popup){pointer-events:none !important}
     body.library-open #library-detail{pointer-events:auto !important}
     body.library-open #library-overlay{pointer-events:auto !important}
     #library-overlay.show .lib-card:nth-child(-n+36){
@@ -892,6 +861,11 @@
       display:flex;align-items:center;justify-content:center;
     }
     .ld-actions button.danger{color:#ff453a}
+    #photo-tools-menu{position:fixed;z-index:460;min-width:200px;padding:6px;display:flex;flex-direction:column;gap:2px;border-radius:14px;background:rgba(30,30,32,.96);border:1px solid rgba(255,255,255,.14);box-shadow:0 12px 36px rgba(0,0,0,.5);opacity:0;transform:translateY(-6px) scale(.98);transform-origin:top right;transition:opacity .16s ease,transform .16s ease}
+    #photo-tools-menu.show{opacity:1;transform:none}
+    #photo-tools-menu button{display:flex;align-items:center;gap:10px;padding:10px 12px;border:0;border-radius:10px;background:transparent;color:#fff;font:inherit;font-size:13.5px;font-weight:500;text-align:left;cursor:pointer}
+    #photo-tools-menu button:hover{background:rgba(255,255,255,.12)}
+    #photo-tools-menu svg{width:18px;height:18px;flex:none}
     .ld-actions svg{width:18px;height:18px}
     .ld-actions button.ld-process-btn{
       width:auto;min-width:36px;height:36px;padding:0 12px;border-radius:18px;
@@ -900,11 +874,6 @@
     }
     .ld-actions button.ld-process-btn svg{width:16px;height:16px;flex-shrink:0}
     .ld-actions button.ld-process-btn:disabled{opacity:.45;cursor:wait}
-    .ld-tools-wrap{position:relative;display:inline-flex}
-    .ld-tools-menu{position:absolute;top:calc(100% + 8px);right:0;min-width:180px;padding:6px;border-radius:14px;background:rgba(22,22,24,.96);border:1px solid rgba(255,255,255,.14);box-shadow:0 12px 32px rgba(0,0,0,.45);display:none;flex-direction:column;gap:4px;z-index:20;opacity:0;transform:translateY(-6px) scale(.98);transition:opacity .16s ease,transform .16s ease}
-    .ld-tools-menu.show{display:flex;opacity:1;transform:none}
-    .ld-tools-menu button{width:100%;text-align:left;padding:10px 12px;border:0;border-radius:10px;background:transparent;color:#fff;font:inherit;font-size:13px;font-weight:500;cursor:pointer}
-    .ld-tools-menu button:hover{background:rgba(255,255,255,.1)}
     #photo-process-modal{
       display:none;position:fixed;inset:0;z-index:9000;align-items:center;justify-content:center;
       padding:20px;background:rgba(0,0,0,.78);
@@ -1199,7 +1168,7 @@
 
     #qr-popup{
       position:fixed;inset:0;background:rgba(0,0,0,0);display:none;
-      align-items:center;justify-content:center;z-index:250;padding:20px;
+      align-items:center;justify-content:center;z-index:470;padding:20px;
       opacity:0;transition:opacity .22s ease, background .22s ease;
     }
     #qr-popup.show{display:flex;opacity:1;background:rgba(0,0,0,.7)}
@@ -1249,6 +1218,9 @@
     /* Chế độ máy yếu: giữ nguyên hiệu ứng (chỉ opacity/transform), bỏ bóng đổ nặng */
     html.lite .adj-popup,html.lite #color-palette,html.lite #filter-panel,html.lite #timer-menu,html.lite .flash-group{box-shadow:0 3px 10px rgba(0,0,0,.35)}
     html.lite .ctrl-btn{box-shadow:none}
+    /* Máy yếu: thư viện nhiều ảnh chỉ vẽ thẻ trong khung nhìn; khung camera tách lớp sơn để không vẽ lại toàn trang mỗi frame. Không đổi hiệu ứng. */
+    .lib-card{content-visibility:auto;contain-intrinsic-size:220px 220px}
+    #camera-frame{contain:layout style}
   </style>
 </head>
 <body>
@@ -1436,6 +1408,7 @@
 
   <div id="filter-panel">
     <div class="panel-head">Bộ lọc <button type="button" class="close-x" data-close="filter-panel">×</button></div>
+    <div class="filter-hot-label">🔥 Hot Instagram</div>
     <div class="filter-grid">
       <button type="button" class="filter-item selected" data-filter="none">
         <div class="thumb" style="background:#1a1a1a;display:flex;align-items:center;justify-content:center">
@@ -1587,15 +1560,9 @@
         </div>
       </div>
       <div class="ld-actions">
-        <div class="ld-tools-wrap">
-          <button type="button" class="ld-process-btn" id="ld-enhance" title="Công cụ ảnh" data-tip="Công cụ ảnh" aria-haspopup="true" aria-expanded="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/><path d="m19 15 .9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15Z"/></svg><span>Công cụ ảnh</span>
-          </button>
-          <div class="ld-tools-menu" id="photo-tools-menu">
-            <button type="button" data-tool="enhance">Tối ưu ảnh</button>
-            <button type="button" data-tool="qr">Quét QR trong ảnh</button>
-          </div>
-        </div>
+        <button type="button" class="ld-process-btn" id="ld-tools" title="Công cụ ảnh" data-tip="Công cụ ảnh" aria-haspopup="menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/><path d="m19 15 .9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15Z"/></svg><span>Công cụ ảnh</span>
+        </button>
         <button type="button" id="ld-info" title="Thông tin" data-tip="Thông tin">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
         </button>
@@ -1630,27 +1597,6 @@
       </div>
       <div class="lib-modal-actions">
         <button type="button" class="btn-ok" id="lib-help-close">Đóng</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="lib-modal" id="enhance-warning-modal" role="dialog" aria-modal="true" aria-labelledby="enhance-warning-title">
-    <div class="lib-modal-box">
-      <h3 id="enhance-warning-title">Tối ưu ảnh đang thử nghiệm</h3>
-      <p>Tính năng này vẫn đang được thử nghiệm. Kết quả có thể chưa rõ rệt hoặc đôi khi xảy ra lỗi. Ảnh gốc của bạn sẽ được giữ nguyên.</p>
-      <div class="lib-modal-actions">
-        <button type="button" class="btn-muted" id="enhance-warning-cancel" title="Không tối ưu ảnh">Hủy bỏ</button>
-        <button type="button" class="btn-ok" id="enhance-warning-continue" title="Bắt đầu tối ưu ảnh">Tiếp tục</button>
-      </div>
-    </div>
-  </div>
-  <div class="lib-modal" id="qr-photo-warning-modal" role="dialog" aria-modal="true" aria-labelledby="qr-photo-warning-title">
-    <div class="lib-modal-box">
-      <h3 id="qr-photo-warning-title">Quét QR trong ảnh đang thử nghiệm</h3>
-      <p>Tính năng này vẫn đang được thử nghiệm. Kết quả có thể chưa rõ rệt hoặc đôi khi xảy ra lỗi. Ảnh gốc của bạn sẽ được giữ nguyên.</p>
-      <div class="lib-modal-actions">
-        <button type="button" class="btn-muted" id="qr-photo-warning-cancel">Hủy bỏ</button>
-        <button type="button" class="btn-ok" id="qr-photo-warning-continue">Tiếp tục</button>
       </div>
     </div>
   </div>
@@ -1753,42 +1699,46 @@
       </div>
       <div class="settings-body">
         <div class="settings-body-head"><h2 id="settings-title">Chung</h2></div>
-        
-        
-        <div class="settings-panel" id="panel-micro">
+
+        <div class="settings-panel active" id="panel-general">
+          <div class="settings-section-label">Giao diện</div>
+          <div class="settings-row">
+            <div><div class="lab">Hiện thông tin nâng cao</div><div class="hint">Hiện FPS, kích thước khung hình, độ phân giải và FPS đã chọn.</div></div>
+            <label class="switch"><input type="checkbox" id="set-advanced-info"><span class="switch-slider"></span></label>
+          </div>
           <div class="settings-row">
             <div>
-              <div class="lab">Khử tiếng ồn (BETA)</div>
-              <div class="hint">Tính năng này đang trong giai đoạn thử nghiệm, có thể xảy ra lỗi hoặc không có tác dụng (Cân nhắc kĩ trước khi bật)</div>
+              <div class="lab">Ngôn ngữ</div>
             </div>
+            <select id="set-lang" disabled>
+              <option value="vi">Tiếng Việt</option>
+            </select>
+          </div>
+          <div class="settings-section-label" style="padding-top:14px">Tính năng nâng cao</div>
+          <div class="settings-row">
+            <div><div class="lab">Lưu lại các thay đổi</div></div>
             <label class="switch">
-              <input type="checkbox" id="set-noise-reduce">
+              <input type="checkbox" id="set-persist" checked>
               <span class="switch-slider"></span>
             </label>
           </div>
           <div class="settings-row">
-            <div>
-              <div class="lab">Khuếch đại micro</div>
-              <div class="hint">Chỉ áp dụng khi quay video</div>
-            </div>
-            <select id="set-mic-gain">
-              <option value="1" selected>Tắt</option>
-              <option value="2">2×</option>
-              <option value="5">5×</option>
-              <option value="10">10×</option>
-              <option value="20">20×</option>
-              <option value="30">30×</option>
-              <option value="40">40×</option>
-              <option value="50">50×</option>
-            </select>
+            <div><div class="lab">Lưu tệp về máy</div><div class="hint">Chụp/Quay sẽ lưu tệp về máy, không lưu ở thư viện</div></div>
+            <label class="switch"><input type="checkbox" id="set-save-device"><span class="switch-slider"></span></label>
           </div>
-          <div class="settings-row" style="align-items:center;gap:12px">
-            <span aria-hidden="true" style="flex-shrink:0;width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(52,199,89,.14);color:#34c759;box-shadow:inset 0 0 0 1px rgba(52,199,89,.28)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor" fill-opacity=".28"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3M9 21h6"/></svg></span>
-            <div id="settings-mic-meter" style="flex:1;height:14px;border-radius:7px;background:rgba(255,255,255,.1);overflow:hidden">
-              <div id="settings-mic-bar" style="height:100%;width:0%;border-radius:7px;background:#34c759;transition:width .08s linear"></div>
+          <div class="settings-row">
+            <div><div class="lab">Làm mới luồng camera & micro</div></div>
+            <button type="button" id="btn-restart-cam" style="padding:8px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap">Làm mới</button>
+          </div>
+          <div class="settings-section-label" style="color:#ff6b63;padding-top:14px">VÙNG NGUY HIỂM</div>
+          <div class="settings-row" style="border-bottom:none;padding-top:8px">
+            <div>
+              <div class="lab">Khôi phục cài đặt gốc</div>
             </div>
+            <button type="button" id="btn-factory-reset" style="padding:8px 14px;border-radius:10px;border:1px solid rgba(255,59,48,.55);background:rgba(255,59,48,.18);color:#ff6b63;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap">Khôi phục</button>
           </div>
         </div>
+
         <div class="settings-panel" id="panel-devices">
           <div class="settings-section-label">Đầu vào</div>
           <div class="settings-row">
@@ -1831,6 +1781,7 @@
             </select>
           </div>
         </div>
+
         <div class="settings-panel" id="panel-storage">
           <div class="storage-card">
             <div class="storage-pct" id="storage-pct">Đã dùng 0%</div>
@@ -1838,10 +1789,11 @@
             <div class="storage-detail" id="storage-detail">0 ảnh, 0 video | Đã dùng 0 KB</div>
             <button type="button" class="storage-clean" id="storage-clean-btn">Dọn dẹp</button>
           </div>
-          <div class="storage-sep"></div>
+          <div class="settings-sep"></div>
           <h3 class="storage-sub">Tệp dung lượng lớn</h3>
           <div class="storage-files" id="storage-files"></div>
         </div>
+
         <div class="settings-panel" id="panel-camera">
           <div class="settings-row">
             <div><div class="lab">Chuyển độ phân giải thông minh (BETA)</div><div class="hint">Tự động cấu hình thấp nhất khi quay video, cấu hình cao cho chụp ảnh. <a href="#" id="smart-learn-more" style="color:#0a84ff;text-decoration:underline">Tìm hiểu thêm</a></div></div>
@@ -1867,14 +1819,14 @@
             </select>
           </div>
           <div id="smart-resolution-note" style="display:none;align-items:flex-start;gap:7px;padding:2px 4px 12px;font-size:12px;line-height:1.5;color:rgba(255,255,255,.72)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="9"/><path d="M12 10v6M12 7h.01"/></svg><span>Không thể điều chỉnh thông số thủ công khi bật tính năng này.</span></div>
-          <div class="settings-section-label" style="padding-top:6px">Lật khung hình</div>
+          <div class="settings-sep"></div>
           <div class="settings-row">
-            <div><div class="lab">Lật đứng</div><div class="hint">Lật dọc khung hình camera</div></div>
-            <label class="switch"><input type="checkbox" id="set-flip-v"><span class="switch-slider"></span></label>
-          </div>
-          <div class="settings-row" style="border-bottom:none">
-            <div><div class="lab">Lật ngang</div><div class="hint">Lật ngang khung hình camera</div></div>
+            <div><div class="lab">Lật ngang</div></div>
             <label class="switch"><input type="checkbox" id="set-flip-h"><span class="switch-slider"></span></label>
+          </div>
+          <div class="settings-row">
+            <div><div class="lab">Lật đứng</div></div>
+            <label class="switch"><input type="checkbox" id="set-flip-v"><span class="switch-slider"></span></label>
           </div>
           <div class="settings-section-label">Xem trước & Thông tin</div>
           <div class="settings-camera-info-row" style="display:flex;align-items:stretch;gap:16px;min-width:0">
@@ -1890,6 +1842,41 @@
           </div>
         </div>
 
+        <div class="settings-panel" id="panel-micro">
+          <div class="settings-row">
+            <div>
+              <div class="lab">Khử tiếng ồn (BETA)</div>
+              <div class="hint">Tính năng này đang trong giai đoạn thử nghiệm, có thể xảy ra lỗi hoặc không có tác dụng (Cân nhắc kĩ trước khi bật)</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="set-noise-reduce">
+              <span class="switch-slider"></span>
+            </label>
+          </div>
+          <div class="settings-row">
+            <div>
+              <div class="lab">Khuếch đại micro</div>
+              <div class="hint">Chỉ áp dụng khi quay video</div>
+            </div>
+            <select id="set-mic-gain">
+              <option value="1" selected>Tắt</option>
+              <option value="2">2×</option>
+              <option value="5">5×</option>
+              <option value="10">10×</option>
+              <option value="20">20×</option>
+              <option value="30">30×</option>
+              <option value="40">40×</option>
+              <option value="50">50×</option>
+            </select>
+          </div>
+          <div class="settings-row" style="align-items:center;gap:12px">
+            <span aria-hidden="true" style="flex-shrink:0;width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(52,199,89,.14);color:#34c759;box-shadow:inset 0 0 0 1px rgba(52,199,89,.28)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor" fill-opacity=".28"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3M9 21h6"/></svg></span>
+            <div id="settings-mic-meter" style="flex:1;height:14px;border-radius:7px;background:rgba(255,255,255,.1);overflow:hidden">
+              <div id="settings-mic-bar" style="height:100%;width:0%;border-radius:7px;background:#34c759;transition:width .08s linear"></div>
+            </div>
+          </div>
+        </div>
+
         <div class="settings-panel" id="panel-about">
           <div class="about-layout">
             <div class="about-hero">
@@ -1898,49 +1885,10 @@
               <div class="about-version">Phiên bản 3.0.0</div>
             </div>
             <div class="about-actions">
-              <button type="button" class="about-action primary" id="support-btn" title="Ủng hộ tác giả" aria-haspopup="dialog"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h12v7a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V9Z"/><path d="M16 11h2a2.5 2.5 0 0 1 0 5h-2M3 22h15M7 5c-1-1 1-2 0-3M12 5c-1-1 1-2 0-3"/></svg></span><span class="txt"><b>Ủng hộ tác giả</b><small>Mời mình một ly cà phê</small></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
-              <a class="about-action" href="https://github.com/BinBimVN130/WeCam" target="_blank" rel="noopener noreferrer" title="GitHub"><span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.04-.02-2.05-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12 24 5.37 18.63 0 12 0z"/></svg></span><span class="txt"><b>GitHub</b><small>Mã nguồn và góp ý</small></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-              <a class="about-action" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=binken12344@gmail.com" target="_blank" rel="noopener noreferrer" title="Gmail"><span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg></span><span class="txt"><b>Gmail</b><small>Liên hệ và báo lỗi</small></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+              <button type="button" class="about-sq primary" id="support-btn" aria-haspopup="dialog" data-tip="Ủng hộ" aria-label="Ủng hộ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h12v7a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V9Z"/><path d="M16 11h2a2.5 2.5 0 0 1 0 5h-2M3 22h15M7 5c-1-1 1-2 0-3M12 5c-1-1 1-2 0-3"/></svg></button>
+              <a class="about-sq" href="https://github.com/BinBimVN130/WeCam" target="_blank" rel="noopener noreferrer" data-tip="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.04-.02-2.05-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12 24 5.37 18.63 0 12 0z"/></svg></a>
+              <a class="about-sq" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=binken12344@gmail.com" target="_blank" rel="noopener noreferrer" data-tip="Gmail" aria-label="Gmail"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg></a>
             </div>
-          </div>
-        </div>
-
-        <div class="settings-panel active" id="panel-general">
-          <div class="settings-section-label">Giao diện</div>
-          <div class="settings-row">
-            <div><div class="lab">Hiện thông tin nâng cao</div><div class="hint">Hiện FPS, kích thước khung hình, độ phân giải và FPS đã chọn.</div></div>
-            <label class="switch"><input type="checkbox" id="set-advanced-info"><span class="switch-slider"></span></label>
-          </div>
-          <div class="settings-row">
-            <div>
-              <div class="lab">Ngôn ngữ</div>
-            </div>
-            <select id="set-lang" disabled>
-              <option value="vi">Tiếng Việt</option>
-            </select>
-          </div>
-          <div class="settings-section-label" style="padding-top:14px">Tính năng nâng cao</div>
-          <div class="settings-row">
-            <div><div class="lab">Lưu lại các thay đổi</div></div>
-            <label class="switch">
-              <input type="checkbox" id="set-persist" checked>
-              <span class="switch-slider"></span>
-            </label>
-          </div>
-          <div class="settings-row">
-            <div><div class="lab">Lưu tệp về máy</div><div class="hint">Chụp/Quay sẽ lưu tệp về máy, không lưu ở thư viện</div></div>
-            <label class="switch"><input type="checkbox" id="set-save-device"><span class="switch-slider"></span></label>
-          </div>
-          <div class="settings-row">
-            <div><div class="lab">Làm mới luồng camera & micro</div></div>
-            <button type="button" id="btn-restart-cam" style="padding:8px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap">Làm mới</button>
-          </div>
-          <div class="settings-section-label" style="color:#ff6b63;padding-top:14px">VÙNG NGUY HIỂM</div>
-          <div class="settings-row" style="border-bottom:none;padding-top:8px">
-            <div>
-              <div class="lab">Khôi phục cài đặt gốc</div>
-            </div>
-            <button type="button" id="btn-factory-reset" style="padding:8px 14px;border-radius:10px;border:1px solid rgba(255,59,48,.55);background:rgba(255,59,48,.18);color:#ff6b63;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap">Khôi phục</button>
           </div>
         </div>
       </div>
@@ -2035,10 +1983,6 @@ const qrPopup=document.getElementById('qr-popup');
 const qrResult=document.getElementById('qr-result');
 const shutterFlash=document.getElementById('shutter-flash');
 const fullscreenFlash=document.getElementById('fullscreen-flash');
-const flipVBtn=document.getElementById('flip-v');
-const flipHBtn=document.getElementById('flip-h');
-const setFlipV=document.getElementById('set-flip-v');
-const setFlipH=document.getElementById('set-flip-h');
 
 
 function showModeHint(text){
@@ -2059,7 +2003,7 @@ function showNotice(id,text){
   document.getElementById('app').appendChild(m);
   requestAnimationFrame(()=>m.classList.add('show'));
 }
-function showPermModal(){ showNotice('perm-modal','Hãy cấp quyền truy cập camera và micro cho trang web này (biểu tượng khóa/camera trên thanh địa chỉ trình duyệt), rồi tải lại trang.'); }
+function showPermModal(){ showNotice('perm-modal','Vui lòng cấp quyền truy cập đầu vào cho trang này.'); }
 /* Chỉ báo "cấp quyền" khi đúng là bị từ chối quyền; lỗi khác báo đúng loại lỗi để biết hướng xử lý */
 function showCameraError(e){
   const name = e && e.name || 'Error';
@@ -2141,12 +2085,18 @@ function placePopup(el, btn, align){
    (xem trước + ảnh/video xuất ra); thumb = kiểu ô chuyển màu ở menu. Nồng độ (state.filterAmount, 0..1) nội suy từ trung tính
    tới giá trị đầy đủ của fx và nhân với độ mờ của overlay. */
 const FILTER_PRESETS = {
+  /* 5 filter hot Instagram — dùng chung hệ fx + overlay (GPU) như filter cũ, không thêm bước xử lý mới */
+  igClarendon:{name:'Clarendon', thumb:'background:linear-gradient(135deg,#bfe0ff,#ffffff);filter:brightness(1.08) saturate(1.2)', fx:{brightness:1.07, contrast:1.16, saturate:1.22}, overlay:{stops:['#bfe0ff','#ffffff'], angle:180, blend:'soft-light', alpha:0.35}},
+  igJuno:{name:'Juno', thumb:'background:linear-gradient(135deg,#ffb26b,#ffd9a0);filter:saturate(1.3)', fx:{saturate:1.32, contrast:1.08, brightness:1.05, sepia:0.05}, overlay:{stops:['#ffb26b','#ffd9a0'], angle:135, blend:'soft-light', alpha:0.35}},
+  igLark:{name:'Lark', thumb:'background:linear-gradient(135deg,#cfe8ff,#eafff2);filter:brightness(1.1)', fx:{brightness:1.09, contrast:1.05, saturate:0.92}, overlay:{stops:['#cfe8ff'], angle:0, blend:'soft-light', alpha:0.3}},
+  igGingham:{name:'Gingham', thumb:'background:linear-gradient(135deg,#f2ede6,#d8cfc8);filter:sepia(.08)', fx:{brightness:1.06, contrast:0.92, saturate:0.82, sepia:0.08}, overlay:{stops:['#ffffff'], angle:0, blend:'soft-light', alpha:0.35}},
+  igValencia:{name:'Valencia', thumb:'background:linear-gradient(135deg,#ffd98a,#ff9d5c);filter:sepia(.18)', fx:{sepia:0.18, brightness:1.06, contrast:1.02, saturate:1.08}, overlay:{stops:['#ffd98a'], angle:0, blend:'soft-light', alpha:0.4}},
   vivid:{name:'Rực rỡ', thumb:'background:linear-gradient(135deg,#00d2ff,#00a650);filter:saturate(1.7)', fx:{saturate:1.38, contrast:1.09, brightness:1.02}},
   fresh:{name:'Tươi mới', thumb:'background:linear-gradient(135deg,#eaff8a,#6be7a1);filter:brightness(1.12) saturate(1.25)', fx:{saturate:1.2, 'hue-rotate':-3, brightness:1.045, contrast:1.025}},
   natural:{name:'Tự nhiên', thumb:'background:linear-gradient(135deg,#d7a98c,#6fae91);filter:saturate(.95)', fx:{contrast:1.04, saturate:1.06, brightness:1.012}},
   sharp:{name:'Sắc nét', thumb:'background:linear-gradient(135deg,#f8e1ff,#dfe6e9)', fx:{contrast:1.13, saturate:1.04, brightness:1.01}},
   mono:{name:'Đen trắng', thumb:'background:linear-gradient(135deg,#eeeeee,#4a4a4a);filter:grayscale(1)', fx:{grayscale:1, contrast:1.14, brightness:1.015}},
-  igsunset:{name:'Cam tím', thumb:'background:linear-gradient(45deg,#833AB4 0%,#C13584 40%,#E1306C 65%,#F77737 100%)', fx:{contrast:1.1, saturate:1.14, brightness:1.03}, overlay:{stops:['#833AB4','#C13584','#E1306C','#F77737'], angle:45, blend:'soft-light', alpha:0.62}},
+  igsunset:{name:'Cam tím', thumb:'background:linear-gradient(45deg,#5b34b8,#9a2a78 50%,#e0642a)', fx:{}, overlay:{stops:['#5b35a3','#a02a6a','#e0642a'], angle:45, blend:'normal', alpha:0.6}},
   golden:{name:'Giờ vàng', thumb:'background:linear-gradient(135deg,#ffd27a,#ff8a3d)', fx:{sepia:0.16, saturate:1.28, brightness:1.06, contrast:1.04}, overlay:{stops:['#ffc466','#ff7a3c','#ffa05a'], angle:160, blend:'soft-light', alpha:0.6}},
   film:{name:'Phim cũ', thumb:'background:linear-gradient(135deg,#d9c3a0,#7a6a58);filter:sepia(.3)', fx:{sepia:0.2, contrast:1.1, saturate:0.88, brightness:1.01}, overlay:{stops:['#f2dfc6'], angle:0, blend:'soft-light', alpha:0.4}},
   y2k:{name:'Y2K', thumb:'background:linear-gradient(135deg,#00e5ff,#ff5ac8)', fx:{contrast:1.14, saturate:1.28, brightness:1.08}, overlay:{stops:['#00e5ff','#ff5ac8'], angle:135, blend:'soft-light', alpha:0.5}},
@@ -2182,7 +2132,7 @@ function buildFilterGrid(){
   grid.appendChild(frag);
 }
 function overlayCss(ov){ return ov.stops.length > 1 ? `linear-gradient(${ov.angle}deg,${ov.stops.join(',')})` : ov.stops[0]; }
-function paintOverlay(c, w, h, ov){
+function paintOverlay(c, w, h, ov, alphaScale=1){
   let fill = ov.stops[0];
   if(ov.stops.length > 1){
     const a = ov.angle * Math.PI / 180, dx = Math.sin(a), dy = -Math.cos(a);
@@ -2191,7 +2141,7 @@ function paintOverlay(c, w, h, ov){
     ov.stops.forEach((col,i)=>g.addColorStop(i/(ov.stops.length-1), col));
     fill = g;
   }
-  c.save(); c.globalCompositeOperation = ov.blend === 'normal' ? 'source-over' : ov.blend; c.globalAlpha = ov.alpha; c.fillStyle = fill; c.fillRect(0, 0, w, h); c.restore();
+  c.save(); c.globalCompositeOperation = ov.blend === 'normal' ? 'source-over' : ov.blend; c.globalAlpha = ov.alpha * alphaScale; c.fillStyle = fill; c.fillRect(0, 0, w, h); c.restore();
 }
 function activeFilterOverlay(){ return state.mode === 'qr' || state.filterAmount <= 0 ? null : (FILTER_PRESETS[state.filter]?.overlay || null); }
 /* Lớp phủ xem trước: chỉ tồn tại trong DOM khi bộ lọc hiện tại có overlay */
@@ -2219,13 +2169,15 @@ function applyTemperatureOverlay(){
   overlay.style.background = t < 0 ? '#55b9ff' : '#ffad62';
   overlay.style.opacity = String(Math.abs(t) * 0.42);
 }
+let _adjResetBtns = null;
+let _cachedFilterBtn = null;
 function updateResetButtons(){
   const mods = {
     ev:  Math.abs(state.ev) > 0.02,
     sat: Math.abs(state.sat - 1) > 0.02,
     temp: Math.abs(state.temp) > 0.02
   };
-  document.querySelectorAll('.adj-reset').forEach(btn=>{ const on = !!mods[btn.dataset.reset]; btn.classList.toggle('show', on); btn.tabIndex = on ? 0 : -1; });
+  (_adjResetBtns ??= [...document.querySelectorAll('.adj-reset')]).forEach(btn=>{ const on = !!mods[btn.dataset.reset]; btn.classList.toggle('show', on); btn.tabIndex = on ? 0 : -1; });
   adjToggle.classList.toggle('active', mods.ev || mods.sat || mods.temp);   // nút ▼ vàng khi 1 trong 3 điều chỉnh đang khác mặc định
   return mods;
 }
@@ -2266,8 +2218,8 @@ function applyFilters(){
   evBtn.classList.toggle('is-modified', mods.ev);
   satBtn.classList.toggle('is-modified', mods.sat);
   tempBtn.classList.toggle('is-modified', mods.temp);
-  const filterBtn = document.getElementById('filter-btn');
-  if(filterBtn) filterBtn.classList.toggle('is-modified', !!(state.filter && state.filter !== 'none'));
+  if(!_cachedFilterBtn) _cachedFilterBtn = document.getElementById('filter-btn');
+  if(_cachedFilterBtn) _cachedFilterBtn.classList.toggle('is-modified', !!(state.filter && state.filter !== 'none'));
 }
 // Gộp nhiều sự kiện kéo thanh trượt vào 1 lần cập nhật mỗi khung hình
 let _adjRaf = 0;
@@ -2308,10 +2260,6 @@ function applyVideoTransform(){
   const sx=state.flipH?-state.zoom:state.zoom;
   const sy=state.flipV?-state.zoom:state.zoom;
   video.style.transform=`translate(${state.panX}px,${state.panY}px) scale(${sx},${sy})`;
-  try{ flipVBtn?.classList.toggle('active',state.flipV); }catch(e){}
-  try{ flipHBtn?.classList.toggle('active',state.flipH); }catch(e){}
-  try{ if(setFlipV) setFlipV.checked = !!state.flipV; }catch(e){}
-  try{ if(setFlipH) setFlipH.checked = !!state.flipH; }catch(e){}
 }
 function clampPan(){
   const max=(state.zoom-1)*180;
@@ -2776,6 +2724,8 @@ let _frameBox = { w: 0, h: 0 };
 function refreshFrameBox(){ _frameBox.w = cameraFrame.clientWidth || 0; _frameBox.h = cameraFrame.clientHeight || 0; }
 refreshFrameBox();
 if('ResizeObserver' in window) new ResizeObserver(refreshFrameBox).observe(cameraFrame);
+const _TEMP_COLD = {stops:['#55b9ff'], angle:0, blend:'soft-light', alpha:0.42};
+const _TEMP_WARM = {stops:['#ffad62'], angle:0, blend:'soft-light', alpha:0.42};
 function drawToCanvas(targetCtx,tw,th,quality){
   const hi = quality !== 'fast';
   const vw = video.videoWidth, vh = video.videoHeight;
@@ -2812,9 +2762,9 @@ function drawToCanvas(targetCtx,tw,th,quality){
   targetCtx.restore();
   // Lớp phủ bộ lọc rồi nhiệt độ màu: vẽ ngoài phép lật để giống màn hình xem trước.
   const fo = activeFilterOverlay();
-  if(fo) paintOverlay(targetCtx, tw, th, {...fo, alpha: fo.alpha * state.filterAmount});
+  if(fo) paintOverlay(targetCtx, tw, th, fo, state.filterAmount);
   const temp = Math.max(-1, Math.min(1, Number(state.temp) || 0));
-  if(Math.abs(temp) > 0.005) paintOverlay(targetCtx, tw, th, {stops:[temp < 0 ? '#55b9ff' : '#ffad62'], angle:0, blend:'soft-light', alpha:Math.abs(temp) * 0.42});
+  if(Math.abs(temp) > 0.005) paintOverlay(targetCtx, tw, th, temp < 0 ? _TEMP_COLD : _TEMP_WARM, Math.abs(temp));
 }
 
 /* BarcodeDetector (bản gốc của trình duyệt) đọc thẳng từ khung hình đầy đủ nên nhanh và nhận được QR nhỏ; jsQR chỉ là phương án dự phòng */
@@ -2927,6 +2877,19 @@ function showBusyPopup(text){
     close: ()=>{ m.classList.remove('show'); setTimeout(()=>m.remove(), 200); }
   };
 }
+/* Quét QR từ một tệp ảnh: hiện popup "Đang quét...", trả về {text} hoặc {failMsg} */
+async function scanQrFromFile(file){
+  const busy = showBusyPopup('Đang quét QR từ ảnh...');
+  let failMsg = 'Không tìm thấy mã QR trong ảnh';
+  try{
+    const text = await decodeQrFromImage(file);
+    if(text) return { text };
+  }catch(err){
+    console.warn('Không quét được QR từ ảnh', err);
+    failMsg = err.message === 'QR_LIB_MISSING' ? 'Chưa tải được thư viện quét QR, hãy kiểm tra kết nối mạng rồi thử lại' : 'Không đọc được tệp ảnh này';
+  }finally{ busy.close(); }
+  return { failMsg };
+}
 document.getElementById('qr-upload-btn')?.addEventListener('click', e=>{
   e.stopPropagation();
   const inp = document.createElement('input');
@@ -2935,17 +2898,9 @@ document.getElementById('qr-upload-btn')?.addEventListener('click', e=>{
     const file = inp.files?.[0];
     if(!file) return;
     stopQRScan();
-    const busy = showBusyPopup('Đang quét QR từ ảnh...');
-    let text = '';
-    let failMsg = 'Không tìm thấy mã QR trong ảnh';
-    try{ text = await decodeQrFromImage(file); }
-    catch(err){
-      console.warn('Không quét được QR từ ảnh', err);
-      failMsg = err.message === 'QR_LIB_MISSING' ? 'Chưa tải được thư viện quét QR, hãy kiểm tra kết nối mạng rồi thử lại' : 'Không đọc được tệp ảnh này';
-    }
-    busy.close();
-    if(text) showQrResult(text);
-    else { showToast(failMsg, 3500); startQRScan(); }
+    const r = await scanQrFromFile(file);
+    if(r.text) showQrResult(r.text);
+    else { showToast(r.failMsg, 3500); startQRScan(); }
   }, {once:true});
   inp.click();
 });
@@ -3611,14 +3566,13 @@ async function setMode(mode){
   cameraFrame.classList.add('mode-switching');
   await new Promise(r => setTimeout(r, 120));
   state.mode=mode;
-  let smartRestarted = false;
   if(state.smartResolution && (mode==='photo' || mode==='video' || mode==='qr')){
     const targetRes = mode==='video' ? '640x480' : '3840x2160';
     const changed = state.previewRes !== targetRes || state.previewFps !== 0;
     state.previewRes = targetRes; state.captureRes = targetRes; state.previewFps = 0;
     if(setPreviewRes) setPreviewRes.value = targetRes;
     if(setPreviewFps) setPreviewFps.value = '0';
-    if(changed){ await startCamera(mode==='video', true); smartRestarted = true; }
+    if(changed) await startCamera(mode==='video', true);
     savePersistedSettings();
   }
   document.body.classList.toggle('mode-video', mode==='video');
@@ -3894,10 +3848,8 @@ document.querySelectorAll('.adj-reset').forEach(btn=>{
   });
 });
 
-flipVBtn?.addEventListener('click',()=>{state.flipV=!state.flipV;applyVideoTransform();savePersistedSettings();});
-flipHBtn?.addEventListener('click',()=>{state.flipH=!state.flipH;applyVideoTransform();savePersistedSettings();});
-setFlipV?.addEventListener('change',()=>{state.flipV=!!setFlipV.checked;applyVideoTransform();savePersistedSettings();showToast(state.flipV?'Đã bật lật đứng':'Đã tắt lật đứng');});
-setFlipH?.addEventListener('change',()=>{state.flipH=!!setFlipH.checked;applyVideoTransform();savePersistedSettings();showToast(state.flipH?'Đã bật lật ngang':'Đã tắt lật ngang');});
+document.getElementById('set-flip-h')?.addEventListener('change',e=>{state.flipH=e.target.checked;applyVideoTransform();savePersistedSettings();});
+document.getElementById('set-flip-v')?.addEventListener('change',e=>{state.flipV=e.target.checked;applyVideoTransform();savePersistedSettings();});
 
 // Fullscreen
 const fsBtn = document.getElementById('fs-btn');
@@ -4059,13 +4011,21 @@ function stopSettingsPreview(){
   if(settingsPreviewRaf) cancelAnimationFrame(settingsPreviewRaf);
   settingsPreviewRaf=0;
 }
+let _settingsPreviewLast = 0;
+let _settingsFrameEl = null, _settingsCamPanelEl = null, _settingsFrameCtx = null;
 function drawSettingsPreview(){
-  const frame=document.getElementById('settings-camera-frame');
-  const panel=document.getElementById('panel-camera');
-  if(!settingsPreviewActive || !panel?.classList.contains('active')){stopSettingsPreview();return;}
-  if(frame && video.readyState>=2 && video.videoWidth && video.videoHeight){
-    if(frame.width!==video.videoWidth||frame.height!==video.videoHeight){frame.width=video.videoWidth;frame.height=video.videoHeight;}
-    try{frame.getContext('2d')?.drawImage(video,0,0,frame.width,frame.height);}catch(e){}
+  if(!settingsPreviewActive){stopSettingsPreview();return;}
+  if(!_settingsCamPanelEl) _settingsCamPanelEl = document.getElementById('panel-camera');
+  if(!_settingsCamPanelEl?.classList.contains('active')){stopSettingsPreview();return;}
+  const now = performance.now();
+  if(now - _settingsPreviewLast >= 33){ // ~30fps là đủ cho ô xem trước trong Cài đặt, giảm 1/2 tải CPU cho máy yếu
+    _settingsPreviewLast = now;
+    if(!_settingsFrameEl) _settingsFrameEl = document.getElementById('settings-camera-frame');
+    const frame = _settingsFrameEl;
+    if(frame && video.readyState>=2 && video.videoWidth && video.videoHeight){
+      if(frame.width!==video.videoWidth||frame.height!==video.videoHeight){frame.width=video.videoWidth;frame.height=video.videoHeight;}
+      try{ (_settingsFrameCtx ??= frame.getContext('2d'))?.drawImage(video,0,0,frame.width,frame.height); }catch(e){}
+    }
   }
   settingsPreviewRaf=requestAnimationFrame(drawSettingsPreview);
 }
@@ -4110,11 +4070,11 @@ function syncSettingsUI(){
   put('set-noise-reduce','checked',!!state.noiseReduce);
   put('set-persist','checked',!!state.persistSettings);
   put('set-save-device','checked',!!state.saveToDevice);
+  put('set-flip-h','checked',!!state.flipH);
+  put('set-flip-v','checked',!!state.flipV);
   put('set-advanced-info','checked',!!state.advancedInfo);
   put('set-preview-res','value',state.previewRes || '1280x720');
   put('set-preview-fps','value',String(state.previewFps === 0 ? 0 : (state.previewFps || 30)));
-  put('set-flip-v','checked',!!state.flipV);
-  put('set-flip-h','checked',!!state.flipH);
   syncMicGainUI();
   syncSmartResolutionUI();
 }
@@ -4135,9 +4095,11 @@ function openSettings(){
   const title = document.getElementById('settings-title');
   if(title) title.textContent = 'Chung';
   settingsOverlay.classList.add('show');
+  { const _sb = document.querySelector('.settings-body'); if(_sb) _sb.scrollTop = 0; } // Reset cuộn: tránh mở Chung mà vẫn kẹt ở vị trí cuộn của panel trước nên tưởng mất mục Giao diện
   refreshDeviceLists();
 }
 function closeSettings(){
+  { const _logo = document.querySelector('.about-logo'); if(_logo) _logo.style.filter=''; } // Không dùng biến aboutLogo ở đây: nó khai báo bằng const ở phía dưới, gọi sớm sẽ lỗi TDZ
   stopSettingsPreview();settingsPreviewActive=false;
   settingsOverlay.classList.remove('show');
   document.body.classList.remove('settings-open');
@@ -4155,8 +4117,9 @@ document.querySelectorAll('.settings-nav-item[data-panel]').forEach(btn=>{
     document.querySelectorAll('.settings-panel').forEach(p=>p.classList.remove('active'));
     const panel = document.getElementById('panel-'+id);
     if(panel) panel.classList.add('active');
+    { const _sb = document.querySelector('.settings-body'); if(_sb) _sb.scrollTop = 0; } // Đổi mục -> về đầu trang để không bị kẹt cuộn
     const title = document.getElementById('settings-title');
-    if(title) title.textContent = ({general:'Chung',micro:'Mic',devices:'Thiết bị',storage:'Dung lượng',camera:'Camera',advanced:'Tính năng nâng cao',about:'Giới thiệu'})[id] || 'Camera';
+    if(title) title.textContent = ({general:'Chung',devices:'Thiết bị',storage:'Dung lượng',camera:'Camera',micro:'Mic',about:'Giới thiệu'})[id] || 'Camera';
     if(id==='micro') startSettingsMicMeter();
     else stopSettingsMicMeter();
     if(id==='storage') refreshStorageInfo();
@@ -4234,22 +4197,6 @@ async function applyPreviewSettings(){
       await waitForVideoFrame(400);
     }
   }catch(e){}
-  // Đồng bộ dropdown với độ phân giải THỰC nếu lệch nhiều
-  const aw = video.videoWidth || 0, ah = video.videoHeight || 0;
-  if(aw && ah){
-    const actual = aw + 'x' + ah;
-    const opts = [...(setPreviewRes?.options || [])].map(o=>o.value);
-    // map gần nhất
-    let best = opts[0] || actual;
-    let bestDist = 1e15;
-    opts.forEach(v=>{
-      const [w,h] = v.split('x').map(Number);
-      const d = Math.abs(w*h - aw*ah);
-      if(d < bestDist){ bestDist = d; best = v; }
-    });
-    // nếu thực tế gần một option khác với lựa chọn → cảnh báo nhưng giữ lựa chọn user
-    const [tw,th] = (state.previewRes||'').split('x').map(Number);
-  }
   updateCamInfoPanel();
   savePersistedSettings();
   notifyApplied(true);
@@ -4359,7 +4306,7 @@ function waitForVideoFrame(timeoutMs=1200){
 async function boostCaptureResolution(){
   const track = state.stream?.getVideoTracks()?.[0];
   if(!track) return false;
-  const cr = state.previewRes || '1280x720';
+  const cr = state.captureRes || state.previewRes || '1280x720'; // Sửa lỗi: trước đây lấy nhầm previewRes nên cr luôn == preview và không bao giờ tăng độ phân giải khi chụp
   const preview = state.previewRes || '1280x720';
   // Cùng mức preview → không cần đổi constraint (tránh đen khung)
   if(cr !== 'max' && cr === preview) return false;
@@ -4398,7 +4345,6 @@ async function restorePreviewResolution(){
 
 /* Tooltip duy nhất do trang web vẽ: loại bỏ native title trên toàn tài liệu. */
 (function(){
-  document.querySelectorAll('.app-tip').forEach(t=>t.remove());
   function migrateTitles(root, force){
     const nodes=[];
     if(root?.nodeType===1 && root.hasAttribute('title')) nodes.push(root);
@@ -4460,32 +4406,19 @@ async function restorePreviewResolution(){
   })).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['title']});
 })();
 
-document.getElementById('about-logo-img').src = document.querySelector('link[rel="icon"]').href;
-
-/* Easter egg: chạm logo WeCam → phát sáng màu ngẫu nhiên */
-(function(){
-  const logo = document.querySelector('.about-logo');
-  if(!logo) return;
-  const hues = [30, 200, 280, 140, 340, 50, 180];
-  let i = 0;
-  logo.addEventListener('click', e=>{
-    e.stopPropagation();
-    const h = hues[i++ % hues.length];
-    logo.classList.add('egg-active');
-    // Chỉ box-shadow (không filter) để icon không bị lệch / hở nền
-    logo.style.boxShadow = '0 0 0 2px hsl('+h+' 100% 62% / 0.95), 0 0 22px 8px hsl('+h+' 100% 58% / 0.7), 0 0 48px 16px hsl('+h+' 100% 55% / 0.35)';
-  });
-  // Thoát cài đặt → tắt sáng
-  const obs = new MutationObserver(()=>{
-    const ov = document.getElementById('settings-overlay');
-    if(ov && !ov.classList.contains('show')){
-      logo.classList.remove('egg-active');
-      logo.style.boxShadow = '';
-    }
-  });
-  const ov = document.getElementById('settings-overlay');
-  if(ov) obs.observe(ov, {attributes:true, attributeFilter:['class']});
-})();
+{
+  const _aboutImg = document.getElementById('about-logo-img');
+  const _favHref = document.querySelector('link[rel="icon"]')?.href;
+  if(_aboutImg && _favHref) _aboutImg.src = _favHref;
+}
+/* Trứng phục sinh: bấm vào logo thì phát sáng màu bất kỳ (mỗi lần bấm đổi sang màu khác, chuyển màu mượt); thoát Cài đặt thì tắt */
+const aboutLogo = document.querySelector('.about-logo');
+let logoHue = Math.random() * 360;
+aboutLogo?.addEventListener('click', ()=>{
+  logoHue = (logoHue + 60 + Math.random() * 180) % 360;
+  const c = `hsl(${Math.round(logoHue)}, 100%, 60%)`;
+  aboutLogo.style.filter = `drop-shadow(0 0 22px ${c}) drop-shadow(0 0 54px ${c})`;
+});
 
 /* Popup ủng hộ: tạo khi mở, xóa hẳn khỏi DOM khi đóng */
 (function(){
@@ -4683,21 +4616,10 @@ bootCameraSetup();   // mở camera sớm: phần script còn lại chạy trong
 /** Đếm số khung hình thật trong ms mili giây (qua requestVideoFrameCallback); 0 nếu không đo được. */
 async function runCameraSetupSequence(){
   const setStatus=(t,pct)=>{ try{ window.AppLoading && window.AppLoading.set(pct, t); }catch(e){} };
-  setStatus('Đang yêu cầu quyền camera và micro...', 18);
+  setStatus('Đang mở camera...', 25);
   try{
-    // Nếu trình duyệt báo đã từ chối sẵn → hiện hướng dẫn ngay, vẫn gọi getUserMedia để mở lại hộp quyền (nếu được)
-    try{
-      if(navigator.permissions?.query){
-        const [camP, micP] = await Promise.all([
-          navigator.permissions.query({name:'camera'}).catch(()=>null),
-          navigator.permissions.query({name:'microphone'}).catch(()=>null)
-        ]);
-        if((camP && camP.state==='denied') || (micP && micP.state==='denied')){
-          setStatus('Hãy cấp quyền camera và micro trên trình duyệt...', 22);
-        }
-      }
-    }catch(e){}
-    // Mở camera một lần, xin quyền camera + micro cùng lúc. startCamera hiện hình ngay khi có khung đầu tiên.
+    // Mở camera một lần, xin quyền camera + micro cùng lúc. startCamera hiện hình ngay khi có khung đầu tiên,
+    // việc áp chất lượng chạy song song. FPS thực tế do bộ đếm FPS trực tiếp đo sau khi giao diện chính đã hiện.
     if(!await startCamera(true, true)) throw new Error('Không mở được camera');
     setStatus('Đang hiển thị...', 85);
     // Micro chỉ cần để xin quyền sớm; micro thật sẽ mở lại khi vào chế độ quay video.
@@ -4722,21 +4644,12 @@ async function bootCameraSetup(){
     showCameraError({ name:'NotSupportedError' });
     return;
   }
-  // Chỉ HTTPS / localhost mới xin được quyền đầu vào
-  const secure = window.isSecureContext === true || location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-  if(!secure){
-    try{ window.AppLoading && window.AppLoading.finish(); }catch(e){}
-    noCamera.classList.remove('hidden');
-    showCameraError({ name:'NotSupportedError' });
-    return;
-  }
   try{
     await runCameraSetupSequence();
   }catch(e){
     try{ window.AppLoading && window.AppLoading.finish(); }catch(_){}
     noCamera.classList.remove('hidden');
-    // Đợi loading bắt đầu ẩn rồi mới hiện popup quyền (tránh bị che)
-    setTimeout(()=>showCameraError(e), 120);
+    showCameraError(e);
   }
 }
 requestAnimationFrame(positionFpsLabel);
@@ -4940,13 +4853,9 @@ async function uploadToLibrary(files){
   try{ added = await libImportFiles(files, p=>busy.setText(pctText(p))); }
   finally{ busy.close(); }
   await renderLibGrid();
-  const ok = added === files.length;
-  if(ok){
-    showToast(added > 1 ? ('Tải lên thành công (' + added + ' tệp)') : 'Tải lên thành công');
-  } else {
-    appConfirm(added ? `Tải lên thất bại (${added}/${files.length} tệp đã được tải)` : 'Tải lên thất bại',
-      { title: 'Thất bại', okText:'Đóng', hideCancel:true, icon: '!', danger: true });
-  }
+  if(added === files.length){ showToast('Tải lên thành công'); return; }
+  appConfirm(added ? `Tải lên thất bại (${added}/${files.length} tệp đã được tải)` : 'Tải lên thất bại',
+    { title:'Thất bại', okText:'Đóng', hideCancel:true, icon:'!', danger:true });
 }
 const libImportInput=document.getElementById('lib-import-input');
 libImportInput?.addEventListener('change', async ()=>{
@@ -5040,14 +4949,6 @@ function libFmtSize(n){
   if(n < 1024) return n + ' B';
   if(n < 1024*1024) return (n/1024).toFixed(1) + ' KB';
   return (n/1024/1024).toFixed(2) + ' MB';
-}
-function libAspectLabel(w,h){
-  if(!w||!h) return '';
-  const r = w/h;
-  if(Math.abs(r-16/9)<0.08) return '16:9';
-  if(Math.abs(r-4/3)<0.08) return '4:3';
-  if(Math.abs(r-1)<0.08) return '1:1';
-  return Math.round(w)+'×'+Math.round(h);
 }
 function stopLibMediaElements(){
   document.querySelectorAll('#ld-stage video').forEach(v=>{
@@ -5281,7 +5182,6 @@ async function renderLibGrid(){
       const check = document.createElement('span');
       check.className = 'lib-check';
       btn.appendChild(check);
-      const asp = libAspectLabel(it.width, it.height);
       const img = document.createElement('img');
       img.decoding = 'async'; img.loading = 'lazy'; img.alt = it.name||''; img.dataset.thumbId = it.id;
       const tu = libThumbUrl(it.id);
@@ -5458,7 +5358,7 @@ function libPreloadNeighbors(){
   }
   libReleaseUrls(keep);
 }
-function libReleaseDetailMedia(){ libPreloaded.clear(); libReleaseUrls(new Set()); }
+function libReleaseDetailMedia(){ closePhotoToolsMenu(); libPreloaded.clear(); libReleaseUrls(new Set()); }
 function syncLibFilm(){
   const film = document.getElementById('ld-film');
   const sig = libItems.map(x=>x.id).join(',');
@@ -5489,12 +5389,13 @@ document.getElementById('ld-film')?.addEventListener('click', e=>{
 
 function renderLibDetail(){
   stopLibMediaElements();
+  closePhotoToolsMenu();
   const it = libItems[libDetailIdx];
   if(!it) return;
   libViewZoom = 1; try{ window.__libResetPan && window.__libResetPan(); }catch(e){}
   document.getElementById('ld-name').textContent = it.name || (it.type==='photo'?'Ảnh':'Video');
   document.getElementById('ld-date').textContent = libFmtDate(it.createdAt);
-  const enhanceButton=document.getElementById('ld-enhance'); if(enhanceButton) enhanceButton.style.display=it.type==='photo'?'inline-flex':'none';
+  const toolsButton=document.getElementById('ld-tools'); if(toolsButton) toolsButton.style.display=it.type==='photo'?'inline-flex':'none';
   const stage = document.getElementById('ld-stage');
   stage.innerHTML = '';
   if(libStageAbort) libStageAbort.abort();
@@ -5571,7 +5472,7 @@ async function processCurrentPhoto(mode){
   const item=libItems[libDetailIdx];
   if(!item||item.type!=='photo'||!item.blob) return;
   photoProcessBusy=true;
-  const buttons=[document.getElementById('ld-enhance')].filter(Boolean);
+  const buttons=[document.getElementById('ld-tools')].filter(Boolean);
   buttons.forEach(b=>b.disabled=true);
   const modal=document.getElementById('photo-process-modal');
   const title=document.getElementById('photo-process-title');
@@ -5673,59 +5574,73 @@ async function processCurrentPhoto(mode){
     photoProcessBusy=false; buttons.forEach(b=>b.disabled=false);
   }
 }
-const enhanceWarningModal=document.getElementById('enhance-warning-modal');
-const qrPhotoWarningModal=document.getElementById('qr-photo-warning-modal');
-const photoToolsMenu=document.getElementById('photo-tools-menu');
-const ldEnhanceBtn=document.getElementById('ld-enhance');
-function closeEnhanceWarning(){ enhanceWarningModal?.classList.remove('show'); }
-function closeQrPhotoWarning(){ qrPhotoWarningModal?.classList.remove('show'); }
+/* ===== Công cụ ảnh: menu thả xuống (tạo khi mở, xóa hẳn khi đóng) + hộp thông báo thử nghiệm ===== */
+const ICON_SPARKLE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/><path d="m19 15 .9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15Z"/></svg>';
+const ICON_QR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v1M14 20h1M18 18h3v3h-3z"/></svg>';
+function showToolNotice(title, onContinue){
+  const m = document.createElement('div');
+  m.className = 'lib-modal'; m.setAttribute('role', 'dialog'); m.setAttribute('aria-modal', 'true');
+  m.innerHTML = '<div class="lib-modal-box"><h3></h3><p>Tính năng này vẫn đang được thử nghiệm. Kết quả có thể chưa rõ rệt hoặc đôi khi xảy ra lỗi. Ảnh gốc của bạn sẽ được giữ nguyên.</p><div class="lib-modal-actions"><button type="button" class="btn-muted">Hủy bỏ</button><button type="button" class="btn-ok">Tiếp tục</button></div></div>';
+  m.querySelector('h3').textContent = title;
+  const onKey = e=>{ if(e.key === 'Escape'){ e.preventDefault(); e.stopPropagation(); close(); } };
+  function close(){
+    document.removeEventListener('keydown', onKey, true);
+    m.classList.remove('show'); m.classList.add('closing');
+    setTimeout(()=>m.remove(), 220);
+  }
+  m.querySelector('.btn-muted').addEventListener('click', close);
+  m.querySelector('.btn-ok').addEventListener('click', ()=>{ close(); onContinue(); });
+  m.addEventListener('click', e=>{ if(e.target === m) close(); });
+  document.addEventListener('keydown', onKey, true);
+  document.getElementById('app').appendChild(m);
+  requestAnimationFrame(()=>m.classList.add('show'));
+}
+/* Quét QR trong ảnh đang xem: kết quả hiện ở menu thông tin QR giống khi tải ảnh lên ở chế độ quét QR */
+async function scanCurrentPhotoQr(){
+  const item = libItems[libDetailIdx];
+  if(!item || item.type !== 'photo' || !item.blob || photoProcessBusy) return;
+  const r = await scanQrFromFile(item.blob);
+  if(r.text) showQrResult(r.text); else showToast(r.failMsg, 3500);
+}
+const PHOTO_TOOLS = [
+  { label:'Tối ưu ảnh', icon:ICON_SPARKLE, run:()=>showToolNotice('Tối ưu ảnh đang thử nghiệm', ()=>processCurrentPhoto('enhance')) },
+  { label:'Quét QR trong ảnh', icon:ICON_QR, run:()=>showToolNotice('Quét QR trong ảnh đang thử nghiệm', scanCurrentPhotoQr) }
+];
+let photoToolsMenu = null;
+const onToolsOutside = e=>{ if(!e.target.closest('#photo-tools-menu, #ld-tools')) closePhotoToolsMenu(); };
+const onToolsKey = e=>{ if(e.key === 'Escape'){ e.preventDefault(); e.stopPropagation(); closePhotoToolsMenu(); } };
 function closePhotoToolsMenu(){
-  photoToolsMenu?.classList.remove('show');
-  if(ldEnhanceBtn) ldEnhanceBtn.setAttribute('aria-expanded','false');
+  if(!photoToolsMenu) return;
+  const m = photoToolsMenu; photoToolsMenu = null;
+  document.removeEventListener('pointerdown', onToolsOutside, true);
+  document.removeEventListener('keydown', onToolsKey, true);
+  m.classList.remove('show');
+  setTimeout(()=>m.remove(), 160);
 }
 function openPhotoToolsMenu(){
-  if(!photoToolsMenu) return;
-  photoToolsMenu.classList.add('show');
-  if(ldEnhanceBtn) ldEnhanceBtn.setAttribute('aria-expanded','true');
-}
-ldEnhanceBtn?.addEventListener('click',e=>{
-  e.stopPropagation();
-  if(photoToolsMenu?.classList.contains('show')) closePhotoToolsMenu();
-  else openPhotoToolsMenu();
-});
-photoToolsMenu?.querySelectorAll('button[data-tool]').forEach(btn=>{
-  btn.addEventListener('click', e=>{
-    e.stopPropagation();
-    const tool = btn.dataset.tool;
-    closePhotoToolsMenu();
-    if(tool==='enhance') enhanceWarningModal?.classList.add('show');
-    else if(tool==='qr') qrPhotoWarningModal?.classList.add('show');
+  const r = document.getElementById('ld-tools').getBoundingClientRect();
+  const m = document.createElement('div');
+  m.id = 'photo-tools-menu'; m.setAttribute('role', 'menu');
+  PHOTO_TOOLS.forEach(t=>{
+    const b = document.createElement('button');
+    b.type = 'button'; b.setAttribute('role', 'menuitem');
+    b.innerHTML = t.icon + '<span></span>';
+    b.querySelector('span').textContent = t.label;
+    b.addEventListener('click', ()=>{ closePhotoToolsMenu(); t.run(); });
+    m.appendChild(b);
   });
+  m.style.top = (r.bottom + 8) + 'px';
+  m.style.right = (window.innerWidth - r.right) + 'px';
+  document.body.appendChild(m);
+  document.addEventListener('pointerdown', onToolsOutside, true);
+  document.addEventListener('keydown', onToolsKey, true);
+  photoToolsMenu = m;
+  requestAnimationFrame(()=>m.classList.add('show'));
+}
+document.getElementById('ld-tools')?.addEventListener('click', e=>{
+  e.stopPropagation();
+  if(photoToolsMenu) closePhotoToolsMenu(); else openPhotoToolsMenu();
 });
-document.addEventListener('click', e=>{
-  if(!e.target.closest('.ld-tools-wrap')) closePhotoToolsMenu();
-});
-document.getElementById('enhance-warning-cancel')?.addEventListener('click',closeEnhanceWarning);
-document.getElementById('enhance-warning-continue')?.addEventListener('click',()=>{closeEnhanceWarning();processCurrentPhoto('enhance');});
-enhanceWarningModal?.addEventListener('click',e=>{if(e.target===enhanceWarningModal)closeEnhanceWarning();});
-document.getElementById('qr-photo-warning-cancel')?.addEventListener('click',closeQrPhotoWarning);
-document.getElementById('qr-photo-warning-continue')?.addEventListener('click', async ()=>{
-  closeQrPhotoWarning();
-  const item = libItems[libDetailIdx];
-  if(!item || item.type !== 'photo' || !item.blob){ showToast('Không có ảnh để quét'); return; }
-  const busy = showBusyPopup('Đang quét QR từ ảnh...');
-  let text = '';
-  let failMsg = 'Không tìm thấy mã QR trong ảnh';
-  try{ text = await decodeQrFromImage(item.blob); }
-  catch(err){
-    console.warn('QR from library photo failed', err);
-    failMsg = err.message === 'QR_LIB_MISSING' ? 'Chưa tải được thư viện quét QR, hãy kiểm tra kết nối mạng rồi thử lại' : 'Không đọc được tệp ảnh này';
-  }
-  busy.close();
-  if(text) showQrResult(text);
-  else showToast(failMsg, 3500);
-});
-qrPhotoWarningModal?.addEventListener('click',e=>{if(e.target===qrPhotoWarningModal)closeQrPhotoWarning();});
 
 function showLibInfo(){
   const it = libItems[libDetailIdx];
